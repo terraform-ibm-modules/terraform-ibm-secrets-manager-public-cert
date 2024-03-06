@@ -7,13 +7,13 @@ variable "ibmcloud_api_key" {
 variable "ca_name" {
   type        = string
   description = "Secret Managers certificate authority name"
-  default     = "goldeneye-ca"
+  default     = "certificate-ca"
 }
 
 variable "dns_provider_name" {
   type        = string
   description = "Secret Managers DNS provider name"
-  default     = "goldeneye-dns"
+  default     = "certificate-dns"
 }
 
 variable "acme_letsencrypt_private_key" {
@@ -31,7 +31,7 @@ variable "cis_id" {
 variable "prefix" {
   type        = string
   description = "Prefix to append to all resources created by this example"
-  default     = "goldeneye-smpc"
+  default     = "certificate-smpc"
 }
 
 variable "region" {

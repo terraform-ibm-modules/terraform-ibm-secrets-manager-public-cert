@@ -32,14 +32,15 @@ module "resource_group" {
   existing_resource_group_name = var.resource_group
 }
 
-
 # Use the secret manager module to generate an instance for the public certificate
 module "secrets_manager" {
   count                = var.existing_sm_instance_guid == null ? 1 : 0
-  source               = "git::https://github.ibm.com/GoldenEye/secrets-manager-module.git?ref=3.4.2"
+  source               = "terraform-ibm-modules/secrets-manager/ibm"
+  version              = "1.1.4"
   resource_group_id    = module.resource_group.resource_group_id
   region               = local.sm_region
   secrets_manager_name = "${var.prefix}-secrets-manager" #tfsec:ignore:general-secrets-no-plaintext-exposure
+  service_endpoints    = "public-and-private"
   sm_service_plan      = "trial"
   sm_tags              = local.tags
 }
@@ -58,8 +59,10 @@ module "secrets_manager_secret_group" {
 # and a DNS provider authorisation (CIS) are configured as a pre-requisite to
 # secrets manager generating certificates
 module "secrets_manager_public_cert_engine" {
-  count                        = var.existing_sm_instance_guid == null ? 1 : 0
-  source                       = "git::https://github.ibm.com/GoldenEye/secrets-manager-public-cert-engine-module.git?ref=3.4.4"
+  count  = var.existing_sm_instance_guid == null ? 1 : 0
+  source = "git::https://github.ibm.com/GoldenEye/secrets-manager-public-cert-engine-module.git?ref=3.4.4"
+  # source                       = "terraform-ibm-modules/secrets-manager-public-cert-engine/ibm"
+  # version                      = "1.0.0"
   secrets_manager_guid         = local.sm_guid
   region                       = local.sm_region
   internet_services_crn        = var.cis_id
