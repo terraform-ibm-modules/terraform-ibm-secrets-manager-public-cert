@@ -1,10 +1,6 @@
 <!-- Update the title -->
 # Terraform Modules Template Project
 
-<!--
-Update status and "latest release" badges:
-  1. For the status options, see https://terraform-ibm-modules.github.io/documentation/#/badge-status
--->
 [![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/secrets-manager-public-cert-module?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/secrets-manager-public-cert-module/releases/latest)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -43,46 +39,81 @@ https://terraform-ibm-modules.github.io/documentation/#/implementation-guideline
 
 ### Usage
 
-<!--
-Add an example of the use of the module in the following code block.
-
-Use real values instead of "var.<var_name>" or other placeholder values
-unless real values don't help users know what to change.
--->
-
 ```hcl
+module "public_certificate" {
+  source                = "terraform-ibm-modules/secrets-manager-public-cert/ibm"
+  version               = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
 
+  cert_common_name      = "<common_name_for_domain>"
+  cert_description      = "Certificate for example domain"
+  cert_name             = "example-public-certificate"
+  cert_secrets_group_id = "<secrets_manager_secret_group_id>" # pragma: allowlist secret
+
+  secrets_manager_ca_name           = "My CA Config"
+  secrets_manager_dns_provider_name = "My DNS Provider Config"
+
+  secrets_manager_guid   = "<secrets_manager_instance_id>" # pragma: allowlist secret
+  secrets_manager_region = "us-south"
+}
+
+##############################################################################
+# Example for CA with two DNS domains
+##############################################################################
+# Engine CA and first DNS config
+##############################################################################
+module "secrets_manager_public_cert_engine" {
+  source                       = "terraform-ibm-modules/secrets-manager-public-cert/ibm"
+  version                      = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  secrets_manager_guid         = "<secrets_manager_guid>"
+  region                       = "us-south"
+  internet_services_crn        = ibm_cis.cis_instance.id
+  ibmcloud_cis_api_key         = var.ibmcloud_api_key
+  dns_config_name              = "DNS Provider Config"
+  ca_config_name               = "CA Config"
+  acme_letsencrypt_private_key = var.acme_letsencrypt_private_key
+}
+##############################################################################
+# Engine second DNS config
+##############################################################################
+module "secrets_manager_public_cert_engine_second_dns" {
+  source                = "terraform-ibm-modules/secrets-manager-public-cert/ibm"
+  version               = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  secrets_manager_guid  = "<secrets_manager_guid>"
+  region                = "us-south"
+  internet_services_crn = ibm_cis.cis_instance.id
+  ibmcloud_cis_api_key  = var.ibmcloud_api_key
+  dns_config_name       = "Second DNS Provider Config"
+}
+##############################################################################
+# Certificate in two DNS configuration
+##############################################################################
+module "secrets_manager_public_certificate" {
+  source                = "terraform-ibm-modules/secrets-manager-public-cert/ibm"
+  version               = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+
+  cert_common_name      = var.cert_common_name
+  cert_description      = "Certificate for ${var.cert_common_name} domain"
+  cert_name             = "goldeneye-instance-sm-public-cert"
+  cert_secrets_group_id = "<secret_group_id>"
+
+  secrets_manager_ca_name           = "CA Config"
+  secrets_manager_dns_provider_name = "Second DNS Provider Config"
+
+  secrets_manager_guid   = "<secrets_manager_guid>"
+  secrets_manager_region = "us-south"
+
+}
 ```
 
 ### Required IAM access policies
 
-<!-- PERMISSIONS REQUIRED TO RUN MODULE
-If this module requires permissions, uncomment the following block and update
-the sample permissions, following the format.
-Replace the sample Account and IBM Cloud service names and roles with the
-information in the console at
-Manage > Access (IAM) > Access groups > Access policies.
--->
-
-<!--
-You need the following permissions to run this module.
-
 - Account Management
-    - **Sample Account Service** service
-        - `Editor` platform access
-        - `Manager` service access
-    - IAM Services
-        - **Sample Cloud Service** service
-            - `Administrator` platform access
--->
-
-<!-- NO PERMISSIONS FOR MODULE
-If no permissions are required for the module, uncomment the following
-statement instead the previous block.
--->
-
-<!-- No permissions are needed to run this module.-->
-
+    - Resource Group service
+    - Viewer platform access
+- IAM Services
+    - Secrets Manager service
+        - Editor platform access
+        - Manager service access
 
 <!-- Below content is automatically populated via pre-commit hook -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
