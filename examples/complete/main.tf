@@ -58,18 +58,30 @@ module "secrets_manager_secret_group" {
 # A public certificate engine, consisting of a certificate authority (LetEncrypt)
 # and a DNS provider authorisation (CIS) are configured as a pre-requisite to
 # secrets manager generating certificates
+
+locals {
+  ibmcloud_secret_store_api_key = var.ibmcloud_secret_store_api_key == null ? var.ibmcloud_api_key : var.ibmcloud_secret_store_api_key
+}
+
 module "secrets_manager_public_cert_engine" {
   count  = var.existing_sm_instance_guid == null ? 1 : 0
   source = "git::https://github.ibm.com/GoldenEye/secrets-manager-public-cert-engine-module.git?ref=3.4.4"
   # source                       = "terraform-ibm-modules/secrets-manager-public-cert-engine/ibm"
   # version                      = "1.0.0"
-  secrets_manager_guid         = local.sm_guid
-  region                       = local.sm_region
-  internet_services_crn        = var.cis_id
-  ibmcloud_cis_api_key         = var.ibmcloud_api_key
-  dns_config_name              = var.dns_provider_name
-  ca_config_name               = var.ca_name
-  acme_letsencrypt_private_key = var.acme_letsencrypt_private_key
+  # providers = {
+  #   ibm              = ibm
+  #   ibm.secret-store = ibm.secret-store
+  # }
+  secrets_manager_guid                      = local.sm_guid
+  region                                    = local.sm_region
+  internet_services_crn                     = var.cis_id
+  ibmcloud_cis_api_key                      = var.ibmcloud_api_key
+  dns_config_name                           = var.dns_provider_name
+  ca_config_name                            = var.ca_name
+  acme_letsencrypt_private_key              = var.acme_letsencrypt_private_key
+  private_key_secrets_manager_instance_guid = var.private_key_secrets_manager_instance_guid
+  private_key_secrets_manager_secret_id     = var.private_key_secrets_manager_secret_id
+  private_key_secrets_manager_region        = var.private_key_secrets_manager_region
 }
 
 ##############################################################################
