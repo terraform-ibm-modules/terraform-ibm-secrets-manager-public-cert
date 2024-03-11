@@ -65,13 +65,13 @@ locals {
 
 module "secrets_manager_public_cert_engine" {
   count  = var.existing_sm_instance_guid == null ? 1 : 0
-  source = "git::https://github.ibm.com/GoldenEye/secrets-manager-public-cert-engine-module.git?ref=3.4.4"
+  source = "git::https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-public-cert-engine.git?ref=init"
   # source                       = "terraform-ibm-modules/secrets-manager-public-cert-engine/ibm"
   # version                      = "1.0.0"
-  # providers = {
-  #   ibm              = ibm
-  #   ibm.secret-store = ibm.secret-store
-  # }
+  providers = {
+    ibm              = ibm
+    ibm.secret-store = ibm.secret-store
+  }
   secrets_manager_guid                      = local.sm_guid
   region                                    = local.sm_region
   internet_services_crn                     = var.cis_id
