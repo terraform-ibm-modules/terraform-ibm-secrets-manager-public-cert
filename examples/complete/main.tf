@@ -64,10 +64,9 @@ locals {
 }
 
 module "secrets_manager_public_cert_engine" {
-  count  = var.existing_sm_instance_guid == null ? 1 : 0
-  source = "git::https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-public-cert-engine.git?ref=init"
-  # source                       = "terraform-ibm-modules/secrets-manager-public-cert-engine/ibm"
-  # version                      = "1.0.0"
+  count   = var.existing_sm_instance_guid == null ? 1 : 0
+  source  = "terraform-ibm-modules/secrets-manager-public-cert-engine/ibm"
+  version = "1.0.0"
   providers = {
     ibm              = ibm
     ibm.secret-store = ibm.secret-store

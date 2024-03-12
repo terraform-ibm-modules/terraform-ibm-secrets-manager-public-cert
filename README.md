@@ -1,5 +1,5 @@
 <!-- Update the title -->
-# Terraform Modules Template Project
+# Secrets manager public cert engine module
 
 [![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/secrets-manager-public-cert-module?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/secrets-manager-public-cert-module/releases/latest)
