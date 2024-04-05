@@ -115,7 +115,7 @@ variable "key_algorithm" {
 
   validation {
     condition     = contains(["RSA2048", "RSA4096", "ECDSA256", "ECDSA384"], var.key_algorithm)
-    error_message = "Invalid input, options: RSA2048, RSA4096, EC256, EC384"
+    error_message = "Invalid input, options: RSA2048, RSA4096, ECDSA256, ECDSA384"
   }
 }
 
