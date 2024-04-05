@@ -114,8 +114,8 @@ variable "key_algorithm" {
   default     = "RSA2048"
 
   validation {
-    condition     = contains(["RSA2048", "RSA4096", "EC256", "EC384"], var.key_algorithm)
-    error_message = "Invalid input, options: RSA2048, RSA4096, EC256, EC384"
+    condition     = contains(["RSA2048", "RSA4096", "ECDSA256", "ECDSA384"], var.key_algorithm)
+    error_message = "Invalid input, options: RSA2048, RSA4096, ECDSA256, ECDSA384"
   }
 }
 
