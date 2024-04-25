@@ -36,11 +36,11 @@ module "resource_group" {
 module "secrets_manager" {
   count                = var.existing_sm_instance_guid == null ? 1 : 0
   source               = "terraform-ibm-modules/secrets-manager/ibm"
-  version              = "1.3.1"
+  version              = "1.10.0"
   resource_group_id    = module.resource_group.resource_group_id
   region               = local.sm_region
   secrets_manager_name = "${var.prefix}-secrets-manager" #tfsec:ignore:general-secrets-no-plaintext-exposure
-  service_endpoints    = "public-and-private"
+  allowed_network      = "public-and-private"
   sm_service_plan      = "trial"
   sm_tags              = local.tags
 }
