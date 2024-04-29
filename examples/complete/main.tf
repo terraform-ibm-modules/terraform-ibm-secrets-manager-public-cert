@@ -40,7 +40,7 @@ module "secrets_manager" {
   resource_group_id    = module.resource_group.resource_group_id
   region               = local.sm_region
   secrets_manager_name = "${var.prefix}-secrets-manager" #tfsec:ignore:general-secrets-no-plaintext-exposure
-  service_endpoints    = "public-and-private"
+  allowed_network      = "public-and-private"
   sm_service_plan      = "trial"
   sm_tags              = local.tags
 }
