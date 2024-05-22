@@ -89,11 +89,13 @@ variable "cert_secrets_group_id" {
 
 variable "cert_rotation" {
   type = object({
-    auto_rotate = optional(bool)
+    auto_rotate = optional(bool),
+    rotate_keys = optional(bool)
   })
   description = "Optional, Rotation policy for the certificate to be created"
   default = {
-    auto_rotate = true
+    auto_rotate = true,
+    rotate_keys = false
   }
 }
 
