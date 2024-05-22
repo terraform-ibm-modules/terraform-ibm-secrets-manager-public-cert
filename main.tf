@@ -13,5 +13,6 @@ resource "ibm_sm_public_certificate" "secrets_manager_public_certificate" {
   key_algorithm   = var.key_algorithm
   rotation {
     auto_rotate = var.cert_rotation.auto_rotate
+    rotate_keys = var.cert_rotation.rotate_keys
   }
 }
