@@ -157,7 +157,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_secret_crn"></a> [secret\_crn](#output\_secret\_crn) | Public certificates secrets manager secret CRN |
-| <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Public certificates secrets manager secret ID |
+| <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Public certificates secrets manager secret unique ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
