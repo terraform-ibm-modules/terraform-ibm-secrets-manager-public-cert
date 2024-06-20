@@ -2,7 +2,7 @@
 # Outputs
 ##############################################################################
 
-output "secret_id" {
+output "id" {
   description = "Public certificates secrets manager secret resource ID"
   value       = ibm_sm_public_certificate.secrets_manager_public_certificate.id
 }
