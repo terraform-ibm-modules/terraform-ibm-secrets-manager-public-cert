@@ -94,3 +94,53 @@ variable "private_key_secrets_manager_region" {
   description = "The region of the Secrets Manager instance containing your ACME private key. (Only needed if different from the region variable)"
   default     = null
 }
+
+variable "sm_allowed_network" {
+  type        = string
+  description = "The types of service endpoints to set on the Secrets Manager instance. Possible values are `private-only` or `public-and-private`."
+  default     = "public-and-private"
+  validation {
+    condition     = contains(["private-only", "public-and-private"], var.sm_allowed_network)
+    error_message = "The specified sm_allowed_network is not a valid selection!"
+  }
+}
+
+variable "sm_endpoint_type" {
+  type        = string
+  description = "The type of endpoint (public or private) to connect to the Secrets Manager API."
+  default     = "public"
+  validation {
+    condition     = contains(["public", "private"], var.sm_endpoint_type)
+    error_message = "The specified sm_endpoint_type is not a valid selection!"
+  }
+}
+
+variable "sm_sg_endpoint_type" {
+  type        = string
+  description = "The type of endpoint (public or private) to connect to the Secrets Manager API."
+  default     = "public"
+  validation {
+    condition     = contains(["public", "private"], var.sm_sg_endpoint_type)
+    error_message = "The specified sm_sg_endpoint_type is not a valid selection!"
+  }
+}
+
+variable "sm_public_cert_engine_endpoint_type" {
+  type        = string
+  description = "The type of endpoint (public or private) to connect to the Secrets Manager API."
+  default     = "public"
+  validation {
+    condition     = contains(["public", "private"], var.sm_public_cert_engine_endpoint_type)
+    error_message = "The specified sm_public_cert_engine_endpoint_type is not a valid selection!"
+  }
+}
+
+variable "sm_public_cert_endpoint_type" {
+  type        = string
+  description = "The type of endpoint (public or private) to connect to the Secrets Manager API."
+  default     = "public"
+  validation {
+    condition     = contains(["public", "private"], var.sm_public_cert_endpoint_type)
+    error_message = "The specified sm_public_cert_endpoint_type is not a valid selection!"
+  }
+}
