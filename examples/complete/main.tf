@@ -54,7 +54,7 @@ module "secrets_manager_secret_group" {
   secrets_manager_guid     = local.sm_guid
   secret_group_name        = "${var.prefix}-certificates-secret-group"   #checkov:skip=CKV_SECRET_6: does not require high entropy string as is static value
   secret_group_description = "secret group used for public certificates" #tfsec:ignore:general-secrets-no-plaintext-exposure
-  endpoint_type            = var.sm_sg_endpoint_type
+  endpoint_type            = var.sm_endpoint_type
 }
 
 # A public certificate engine, consisting of a certificate authority (LetEncrypt)
@@ -75,7 +75,7 @@ module "secrets_manager_public_cert_engine" {
   }
   secrets_manager_guid                      = local.sm_guid
   region                                    = local.sm_region
-  service_endpoints                         = var.sm_public_cert_engine_endpoint_type
+  service_endpoints                         = var.sm_endpoint_type
   internet_services_crn                     = var.cis_id
   ibmcloud_cis_api_key                      = var.ibmcloud_api_key
   dns_config_name                           = var.dns_provider_name
@@ -104,5 +104,5 @@ module "secrets_manager_public_certificate" {
 
   secrets_manager_guid   = local.sm_guid
   secrets_manager_region = local.sm_region
-  service_endpoints      = var.sm_public_cert_endpoint_type
+  service_endpoints      = var.sm_endpoint_type
 }

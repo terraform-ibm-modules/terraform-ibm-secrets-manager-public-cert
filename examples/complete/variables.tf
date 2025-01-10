@@ -114,33 +114,3 @@ variable "sm_endpoint_type" {
     error_message = "The specified sm_endpoint_type is not a valid selection!"
   }
 }
-
-variable "sm_sg_endpoint_type" {
-  type        = string
-  description = "The type of endpoint (public or private) to connect to the Secrets Manager API."
-  default     = "public"
-  validation {
-    condition     = contains(["public", "private"], var.sm_sg_endpoint_type)
-    error_message = "The specified sm_sg_endpoint_type is not a valid selection!"
-  }
-}
-
-variable "sm_public_cert_engine_endpoint_type" {
-  type        = string
-  description = "The type of endpoint (public or private) to connect to the Secrets Manager API."
-  default     = "public"
-  validation {
-    condition     = contains(["public", "private"], var.sm_public_cert_engine_endpoint_type)
-    error_message = "The specified sm_public_cert_engine_endpoint_type is not a valid selection!"
-  }
-}
-
-variable "sm_public_cert_endpoint_type" {
-  type        = string
-  description = "The type of endpoint (public or private) to connect to the Secrets Manager API."
-  default     = "public"
-  validation {
-    condition     = contains(["public", "private"], var.sm_public_cert_endpoint_type)
-    error_message = "The specified sm_public_cert_endpoint_type is not a valid selection!"
-  }
-}
