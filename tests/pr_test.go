@@ -102,9 +102,7 @@ func TestPrivateInSchematics(t *testing.T) {
 		{Name: "cis_id", Value: permanentResources["cisInstanceId"], DataType: "string"},
 		{Name: "ca_name", Value: permanentResources["certificateAuthorityName"], DataType: "string"},
 		{Name: "dns_provider_name", Value: permanentResources["dnsProviderName"], DataType: "string"},
-		{Name: "sm_sg_endpoint_type", Value: "private", DataType: "string"},
-		{Name: "sm_public_cert_engine_endpoint_type", Value: "private", DataType: "string"},
-		{Name: "sm_public_cert_endpoint_type", Value: "private", DataType: "string"},
+		{Name: "sm_endpoint_type", Value: "private", DataType: "string"},
 	}
 
 	err := options.RunSchematicTest()
