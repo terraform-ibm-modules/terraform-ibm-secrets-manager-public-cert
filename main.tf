@@ -4,6 +4,8 @@ resource "ibm_sm_public_certificate" "secrets_manager_public_certificate" {
   endpoint_type   = var.service_endpoints
   name            = var.cert_name
   description     = var.cert_description
+  custom_metadata = var.cert_custom_metadata
+  labels          = var.cert_labels
   ca              = var.secrets_manager_ca_name
   dns             = var.secrets_manager_dns_provider_name
   common_name     = var.cert_common_name
