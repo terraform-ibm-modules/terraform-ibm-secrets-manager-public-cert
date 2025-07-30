@@ -153,3 +153,30 @@ variable "service_endpoints" {
     error_message = "The specified service_endpoints is not a valid selection!"
   }
 }
+
+variable "cert_custom_metadata" {
+  type        = map(string)
+  description = "Optional, Custom metadata for the certificate to be created"
+  default = {
+    collection_type  = "application/vnd.ibm.secrets-manager.secret+json",
+    collection_total = 1
+  }
+}
+
+variable "cert_labels" {
+  type        = list(string)
+  description = "Optional, Labels for the certificate to be created"
+  default     = []
+
+  validation {
+    condition     = length(var.cert_labels) <= 30
+    error_message = "length of cert_labels must be <= 30"
+  }
+
+  validation {
+    condition = alltrue([
+      for cert_label in var.cert_labels : can(regex("(.*?)", cert_label)) && length(cert_label) >= 2 && length(cert_label) <= 30
+    ])
+    error_message = "list items must match regular expression /(.*?)/, length of list items must be >= 2 and <= 30"
+  }
+}
