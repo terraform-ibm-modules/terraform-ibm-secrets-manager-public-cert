@@ -20,7 +20,7 @@ The module supports the following secret types:
 ## Overview
 * [terraform-ibm-secrets-manager-public-cert](#terraform-ibm-secrets-manager-public-cert)
 * [Examples](./examples)
-    * [Complete example](./examples/complete)
+    * <div style="display: inline-block;"><a href="./examples/complete">Complete example</a></div> <div style="display: inline-block; vertical-align: middle;"><a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=smpc-complete-example&repository=github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-public-cert/tree/main/examples/complete" target="_blank"><img src="https://cloud.ibm.com/media/docs/images/icons/Deploy_to_cloud.svg" alt="Deploy to IBM Cloud button"></a></div>
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
