@@ -104,5 +104,5 @@ module "secrets_manager_public_certificate" {
 
   secrets_manager_guid   = local.sm_guid
   secrets_manager_region = local.sm_region
-  endpoint_type      = var.sm_endpoint_type
+  endpoint_type          = var.sm_endpoint_type
 }
