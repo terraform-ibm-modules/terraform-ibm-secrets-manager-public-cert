@@ -147,12 +147,12 @@ No modules.
 | <a name="input_cert_name"></a> [cert\_name](#input\_cert\_name) | The name of the certificate to be created in Secrets Manager | `string` | n/a | yes |
 | <a name="input_cert_rotation"></a> [cert\_rotation](#input\_cert\_rotation) | Optional, Rotation policy for the certificate to be created | <pre>object({<br/>    auto_rotate = optional(bool),<br/>    rotate_keys = optional(bool)<br/>  })</pre> | <pre>{<br/>  "auto_rotate": true,<br/>  "rotate_keys": false<br/>}</pre> | no |
 | <a name="input_cert_secrets_group_id"></a> [cert\_secrets\_group\_id](#input\_cert\_secrets\_group\_id) | Optional, Id of Secrets Manager secret group to store the certificate in | `string` | `"default"` | no |
+| <a name="input_endpoint_type"></a> [endpoint\_type](#input\_endpoint\_type) | The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 | <a name="input_key_algorithm"></a> [key\_algorithm](#input\_key\_algorithm) | The identifier for the cryptographic algorithm to be used to generate the public key that is associated with the certificate. | `string` | `"RSA2048"` | no |
 | <a name="input_secrets_manager_ca_name"></a> [secrets\_manager\_ca\_name](#input\_secrets\_manager\_ca\_name) | The name of the Secrets Manager certificate authority | `string` | n/a | yes |
 | <a name="input_secrets_manager_dns_provider_name"></a> [secrets\_manager\_dns\_provider\_name](#input\_secrets\_manager\_dns\_provider\_name) | The name of the Secrets Manager DNS provider | `string` | n/a | yes |
 | <a name="input_secrets_manager_guid"></a> [secrets\_manager\_guid](#input\_secrets\_manager\_guid) | Secrets Manager GUID | `string` | n/a | yes |
 | <a name="input_secrets_manager_region"></a> [secrets\_manager\_region](#input\_secrets\_manager\_region) | Region the Secrets Manager instance is in | `string` | n/a | yes |
-| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 
 ### Outputs
 

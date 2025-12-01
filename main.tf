@@ -1,7 +1,7 @@
 resource "ibm_sm_public_certificate" "secrets_manager_public_certificate" {
   instance_id     = var.secrets_manager_guid
   region          = var.secrets_manager_region
-  endpoint_type   = var.service_endpoints
+  endpoint_type   = var.endpoint_type
   name            = var.cert_name
   description     = var.cert_description
   custom_metadata = var.cert_custom_metadata
