@@ -68,14 +68,14 @@ locals {
 module "secrets_manager_public_cert_engine" {
   count   = var.existing_sm_instance_guid == null ? 1 : 0
   source  = "terraform-ibm-modules/secrets-manager-public-cert-engine/ibm"
-  version = "1.4.2"
+  version = "1.6.1"
   providers = {
     ibm              = ibm
     ibm.secret-store = ibm.secret-store
   }
   secrets_manager_guid                      = local.sm_guid
   region                                    = local.sm_region
-  service_endpoints                         = var.sm_endpoint_type
+  endpoint_type                             = var.sm_endpoint_type
   internet_services_crn                     = var.cis_id
   ibmcloud_cis_api_key                      = var.ibmcloud_api_key
   dns_config_name                           = var.dns_provider_name
@@ -104,5 +104,5 @@ module "secrets_manager_public_certificate" {
 
   secrets_manager_guid   = local.sm_guid
   secrets_manager_region = local.sm_region
-  service_endpoints      = var.sm_endpoint_type
+  endpoint_type      = var.sm_endpoint_type
 }
