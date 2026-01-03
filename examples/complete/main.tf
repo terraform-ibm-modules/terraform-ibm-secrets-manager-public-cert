@@ -36,7 +36,7 @@ module "resource_group" {
 module "secrets_manager" {
   count                = var.existing_sm_instance_guid == null ? 1 : 0
   source               = "terraform-ibm-modules/secrets-manager/ibm"
-  version              = "2.12.13"
+  version              = "2.12.14"
   resource_group_id    = module.resource_group.resource_group_id
   region               = local.sm_region
   secrets_manager_name = "${var.prefix}-secrets-manager" #tfsec:ignore:general-secrets-no-plaintext-exposure
@@ -68,7 +68,7 @@ locals {
 module "secrets_manager_public_cert_engine" {
   count   = var.existing_sm_instance_guid == null ? 1 : 0
   source  = "terraform-ibm-modules/secrets-manager-public-cert-engine/ibm"
-  version = "1.6.14"
+  version = "1.6.15"
   providers = {
     ibm              = ibm
     ibm.secret-store = ibm.secret-store
