@@ -130,7 +130,7 @@ module "secrets_manager_public_certificate" {
 ### Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.79.0, < 3.0.0 |
 
@@ -141,13 +141,13 @@ No modules.
 ### Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [ibm_sm_public_certificate.secrets_manager_public_certificate](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_public_certificate) | resource |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_bundle_certs"></a> [bundle\_certs](#input\_bundle\_certs) | Indicates whether the issued certificate is bundled with intermediate certificates. | `bool` | `true` | no |
 | <a name="input_cert_alt_names"></a> [cert\_alt\_names](#input\_cert\_alt\_names) | Optional, Alternate names for the certificate to be created | `list(string)` | `null` | no |
 | <a name="input_cert_common_name"></a> [cert\_common\_name](#input\_cert\_common\_name) | Fully qualified domain name or host domain name for the certificate to be created | `string` | n/a | yes |
@@ -167,7 +167,7 @@ No modules.
 ### Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_id"></a> [id](#output\_id) | Public certificates secrets manager secret resource ID |
 | <a name="output_secret_crn"></a> [secret\_crn](#output\_secret\_crn) | Public certificates secrets manager secret CRN |
 | <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Public certificates secrets manager secret unique ID |
